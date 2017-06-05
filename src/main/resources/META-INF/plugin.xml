@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>com.intellij.abbreviator</id>
+    <name>Abbreviator</name>
+    <version>0.0.001</version>
+    <vendor>yaroslav.lepenkin@jetbrains.com</vendor>
+
+    <description>Experimental Abbreviation Support</description>
+
+    <change-notes>Change Notes</change-notes>
+
+    <idea-version since-build="171.0"/>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <action class="sample.SampleAction" id="SampleAction"/>
+    </actions>
+
+    <project-components>
+        <component>
+            <implementation-class>sample.SampleProjectComponent</implementation-class>
+        </component>
+    </project-components>
+
+    <application-components>
+        <component>
+            <implementation-class>sample.SampleAppComponent</implementation-class>
+        </component>
+    </application-components>
+</idea-plugin>
