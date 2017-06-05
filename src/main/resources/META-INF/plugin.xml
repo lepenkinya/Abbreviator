@@ -11,21 +11,23 @@
     <idea-version since-build="171.0"/>
 
     <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceInterface="com.intellij.abbreviation.AbbreviationService"
+                            serviceImplementation="com.intellij.abbreviation.AbbreviationServiceImpl">
+        </applicationService>
     </extensions>
 
     <actions>
-        <action class="sample.SampleAction" id="SampleAction"/>
+        <action class="com.intellij.abbreviation.ExpandAbbreviation" id="SampleAction"/>
     </actions>
 
+
+
     <project-components>
-        <component>
-            <implementation-class>sample.SampleProjectComponent</implementation-class>
-        </component>
     </project-components>
 
     <application-components>
-        <component>
-            <implementation-class>sample.SampleAppComponent</implementation-class>
-        </component>
+
+
     </application-components>
+
 </idea-plugin>
