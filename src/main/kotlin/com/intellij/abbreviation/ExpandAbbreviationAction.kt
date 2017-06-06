@@ -7,7 +7,7 @@ import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.Document
 import com.intellij.util.text.CharArrayUtil
 
-class ExpandAbbreviation : AnAction() {
+class ExpandAbbreviationAction : AnAction() {
 
     init {
         templatePresentation.text = "Expand Abbreviation"

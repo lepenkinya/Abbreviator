@@ -17,7 +17,7 @@
     </extensions>
 
     <actions>
-        <action class="com.intellij.abbreviation.ExpandAbbreviation" id="ExpandAbbreviation"/>
+        <action class="com.intellij.abbreviation.ExpandAbbreviationAction" id="ExpandAbbreviation"/>
     </actions>
 
 
