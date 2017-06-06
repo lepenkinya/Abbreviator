@@ -17,9 +17,15 @@ class ExpandAbbreviation : AnAction() {
         private val WS = listOf('\n', '\t', ' ').toCharArray()
     }
 
+    override fun update(e: AnActionEvent) {
+        val project = e.project
+        val editor = e.dataContext.getData(CommonDataKeys.EDITOR)
+        e.presentation.isEnabled = editor != null && project != null
+    }
+
     override fun actionPerformed(e: AnActionEvent) {
-        val project = e.project ?: return
-        val editor = e.dataContext.getData(CommonDataKeys.EDITOR) ?: return
+        val project = e.project!!
+        val editor = e.dataContext.getData(CommonDataKeys.EDITOR)!!
 
         val document = editor.document
         val caretOffset = editor.caretModel.offset
