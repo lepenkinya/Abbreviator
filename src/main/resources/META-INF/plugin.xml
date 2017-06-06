@@ -12,7 +12,8 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceInterface="com.intellij.abbreviation.AbbreviationSuggester"
-                            serviceImplementation="com.intellij.abbreviation.AbbreviationSuggesterImpl">
+                            serviceImplementation="com.intellij.abbreviation.AbbreviationSuggesterImpl"
+                            testServiceImplementation="com.intellij.abbreviation.TestSuggester">
         </applicationService>
     </extensions>
 
