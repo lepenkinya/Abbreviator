@@ -3,19 +3,20 @@ package com.intellij.abbreviation
 import com.intellij.openapi.components.service
 
 
-interface AbbreviationService {
+interface AbbreviationSuggester {
     fun suggestLine(abbreviation: CharSequence): String?
 
     companion object {
-        val instance: AbbreviationService
+        val instance: AbbreviationSuggester
             get() = service()
     }
 }
 
 
-class AbbreviationServiceImpl: AbbreviationService {
+class AbbreviationSuggesterImpl(private val abbreviationStats: AbbreviationStats): AbbreviationSuggester {
 
     override fun suggestLine(abbreviation: CharSequence): String? {
-        return "my.suggested.line.call(100);"
+        return abbreviationStats.data["suggestion"]
     }
+
 }

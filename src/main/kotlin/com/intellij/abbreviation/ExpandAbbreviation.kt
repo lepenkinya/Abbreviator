@@ -5,16 +5,13 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.editor.Document
+import com.intellij.util.text.CharArrayUtil
 
 class ExpandAbbreviation : AnAction() {
 
     init {
         templatePresentation.text = "Expand Abbreviation"
         templatePresentation.description = "Using Experimental Abbreviations"
-    }
-
-    companion object {
-        private val WS = listOf('\n', '\t', ' ').toCharArray()
     }
 
     override fun update(e: AnActionEvent) {
@@ -32,10 +29,11 @@ class ExpandAbbreviation : AnAction() {
 
         val chars = document.immutableCharSequence
 
-        val abbrStartOffset = document.tokenStartOffset(caretOffset)
+        val abbrStartOffset = document.abbrStartOffset(caretOffset)
+        if (abbrStartOffset == caretOffset) return
         val abbrText = chars.subSequence(abbrStartOffset, caretOffset)
 
-        val newText = AbbreviationService.instance.suggestLine(abbrText) ?: return
+        val newText = AbbreviationSuggester.instance.suggestLine(abbrText) ?: return
 
         WriteCommandAction.runWriteCommandAction(project, Runnable {
             document.replaceString(abbrStartOffset, caretOffset, newText)
@@ -43,16 +41,11 @@ class ExpandAbbreviation : AnAction() {
     }
 
 
-    private fun Document.tokenStartOffset(before: Int): Int {
-        val chars = immutableCharSequence
-
-        val lineNumber = getLineNumber(before)
-        val lineNumberStartOffset = getLineStartOffset(lineNumber)
-
-        val line = chars.subSequence(lineNumberStartOffset, before)
-        val lastWhiteSpace = line.lastIndexOfAny(WS)
-
-        return lineNumberStartOffset + lastWhiteSpace + 1
+    private fun Document.abbrStartOffset(beforeOffset: Int): Int {
+        val lineNumber = getLineNumber(beforeOffset)
+        val startOffset = getLineStartOffset(lineNumber)
+        val abbrStartOffset = CharArrayUtil.shiftForward(immutableCharSequence, startOffset, beforeOffset, " \n\t")
+        return abbrStartOffset
     }
 
 }

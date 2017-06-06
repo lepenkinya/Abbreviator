@@ -11,8 +11,8 @@
     <idea-version since-build="171.0"/>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceInterface="com.intellij.abbreviation.AbbreviationService"
-                            serviceImplementation="com.intellij.abbreviation.AbbreviationServiceImpl">
+        <applicationService serviceInterface="com.intellij.abbreviation.AbbreviationSuggester"
+                            serviceImplementation="com.intellij.abbreviation.AbbreviationSuggesterImpl">
         </applicationService>
     </extensions>
 
@@ -26,8 +26,9 @@
     </project-components>
 
     <application-components>
-
-
+        <component>
+            <implementation-class>com.intellij.abbreviation.AbbreviationStats</implementation-class>
+        </component>
     </application-components>
 
 </idea-plugin>
