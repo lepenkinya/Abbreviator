@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>com.intellij.abbreviator</id>
-    <name>Abbreviator</name>
+    <id>com.intellij.abbr</id>
+    <name>intellij ai</name>
     <version>0.0.001</version>
     <vendor>yaroslav.lepenkin@jetbrains.com</vendor>
 
